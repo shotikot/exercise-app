@@ -16,7 +16,7 @@ export const TableRow: React.FC<IAppRow> = ({
         <td>{appId}</td>
         <td>{appName}</td>
         <td>{category}</td>
-        <td>{appSources.map((appSource) => `${appSource}, `)}</td>
+        <td>{appSources.map((appSource) => appSource)}</td>
       </tr>
       {isOpen && (
         <Modal

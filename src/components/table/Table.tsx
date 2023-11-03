@@ -10,7 +10,8 @@ interface ITableProps {
 export const Table: React.FC<ITableProps> = ({ columns }) => {
   return (
     <div>
-      <table>
+      <h1>App Inventory</h1>
+      <table cellPadding={0} cellSpacing={0}>
         <tr>
           <th>App ID</th>
           <th>App Name</th>

@@ -11,10 +11,39 @@
 .modal {
   width: 40vw;
   height: 100vh;
-  background-color: #fff;
+  background-color: #fafafa;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 3;
-  padding-left: 2em;
+  padding: 0 2em;
+}
+
+.overview {
+  background-color: #f0f3fb;
+  padding: 1em;
+  border-radius: 8px;
+  border: 1px solid blue;
+  margin: 0 0 2em 0;
+}
+
+.overview h3 {
+  padding: 0;
+}
+
+.users {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e8e9ff;
+}
+
+.users .title,
+.user {
+  background-color: #fff;
+  border-bottom: 1px solid #e8e9ff;
+  padding: 1em;
+}
+
+.user:last-of-type {
+  border-bottom: none;
 }

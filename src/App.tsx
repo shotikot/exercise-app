@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Table } from "./components/table/Table";
 import "./App.css";
 import axios from "axios";
@@ -16,6 +16,8 @@ function App() {
     totalCount: null,
     appRows: [],
   });
+
+  const prevPageNumber = useRef(1);
 
   const [pagination, setPagination] = useState({
     pageNumber: 1,
@@ -41,6 +43,7 @@ function App() {
       ...prevState,
       pageNumber: 1,
     }));
+    prevPageNumber.current = 1;
   }, [pagination.pageSize]);
 
   useEffect(() => {
@@ -60,7 +63,12 @@ function App() {
           appRows: response.data.appRows,
         });
       } catch (err) {
-        console.error(err);
+        if (pagination.pageNumber > 1) {
+          setPagination((prevState) => ({
+            ...prevState,
+            pageNumber: prevPageNumber?.current,
+          }));
+        }
       }
     };
 
@@ -80,6 +88,7 @@ function App() {
         changePage={changePage}
         changePageSize={changePageSize}
         pageSize={pagination.pageSize}
+        prevPageNumber={prevPageNumber}
       />
     </div>
   );

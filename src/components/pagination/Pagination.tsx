@@ -7,6 +7,7 @@ interface IPaginationProps {
   changePage: (pageNumber: number) => void;
   changePageSize: (pageSize: number) => void;
   pageSize: number;
+  prevPageNumber: { current?: number };
 }
 
 export const Pagination: React.FC<IPaginationProps> = ({
@@ -15,13 +16,21 @@ export const Pagination: React.FC<IPaginationProps> = ({
   changePage,
   changePageSize,
   pageSize,
+  prevPageNumber,
 }) => {
   if (!totalPages) {
     return null;
   }
 
-  const increment = () => changePage(pageNumber + 1);
-  const decrement = () => changePage(pageNumber - 1);
+  const increment = () => {
+    prevPageNumber.current = pageNumber;
+    changePage(pageNumber + 1);
+  };
+
+  const decrement = () => {
+    prevPageNumber.current = pageNumber;
+    changePage(pageNumber - 1);
+  };
 
   return (
     <div className="pagination">
