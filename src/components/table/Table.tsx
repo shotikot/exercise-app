@@ -1,20 +1,15 @@
 import React from "react";
 import { TableRow } from "./table-row/TableRow";
-import './Table.css';
+import { IAppRow } from "../../App";
+import "./Table.css";
 
 interface ITableProps {
-  columns: Array<{
-    appId: string;
-    appName: string;
-    category: string;
-    appSources: Array<string>;
-  }>;
+  columns: Array<IAppRow>;
 }
 
 export const Table: React.FC<ITableProps> = ({ columns }) => {
   return (
     <div>
-      <h1>Table</h1>
       <table>
         <tr>
           <th>App ID</th>

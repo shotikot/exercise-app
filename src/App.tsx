@@ -4,6 +4,13 @@ import "./App.css";
 import axios from "axios";
 import { Pagination } from "./components/pagination/Pagination";
 
+export interface IAppRow {
+  appId: string;
+  appName: string;
+  category: string;
+  appSources: Array<string>;
+}
+
 function App() {
   const [data, setData] = useState({
     totalCount: null,
@@ -28,6 +35,13 @@ function App() {
       pageSize,
     }));
   };
+
+  useEffect(() => {
+    setPagination((prevState) => ({
+      ...prevState,
+      pageNumber: 1,
+    }));
+  }, [pagination.pageSize]);
 
   useEffect(() => {
     const getAppList = async () => {

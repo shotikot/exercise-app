@@ -1,25 +1,32 @@
-import React from "react";
-import './TableRow.css';
+import React, { useState } from "react";
+import { Modal } from "../../modal/Modal";
+import { IAppRow } from "../../../App";
+import "./TableRow.css";
 
-interface ITableRows {
-  appId: string;
-  appName: string;
-  category: string;
-  appSources: Array<string>;
-}
-
-export const TableRow: React.FC<ITableRows> = ({
+export const TableRow: React.FC<IAppRow> = ({
   appId,
   appName,
   category,
   appSources,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <tr>
-      <td>{appId}</td>
-      <td>{appName}</td>
-      <td>{category}</td>
-      <td>{appSources.map((appSource) => `${appSource}, `)}</td>
-    </tr>
+    <>
+      <tr onClick={() => setIsOpen(true)}>
+        <td>{appId}</td>
+        <td>{appName}</td>
+        <td>{category}</td>
+        <td>{appSources.map((appSource) => `${appSource}, `)}</td>
+      </tr>
+      {isOpen && (
+        <Modal
+          onClose={() => setIsOpen(false)}
+          appId={appId}
+          appName={appName}
+          category={category}
+          appSources={appSources}
+        />
+      )}
+    </>
   );
 };

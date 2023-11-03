@@ -24,7 +24,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
   const decrement = () => changePage(pageNumber - 1);
 
   return (
-    <div>
+    <div className="pagination">
       <button disabled={pageNumber === 1} onClick={decrement}>
         {"<"}
       </button>
